@@ -1,2 +1,4 @@
 selenium
 pytest
+faker
+pytest-check
