@@ -1,5 +1,6 @@
 import time
 
+from selenium.common import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from  selenium.webdriver.remote.webdriver import WebDriver
@@ -31,3 +32,9 @@ class BasePage:
         for _ in range(steps):
             ActionChains(self.driver).scroll_by_amount(0, pixels).perform()
             time.sleep(pause)
+
+    def is_url_contains(self, text: str) -> bool:
+        try:
+            return self.wait.until(EC.url_contains(text))
+        except TimeoutException:
+            return False
