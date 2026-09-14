@@ -1,6 +1,6 @@
 import time
 
-from selenium.common import TimeoutException
+from selenium.common import TimeoutException, NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from  selenium.webdriver.remote.webdriver import WebDriver
@@ -37,4 +37,10 @@ class BasePage:
         try:
             return self.wait.until(EC.url_contains(text))
         except TimeoutException:
+            return False
+
+    def is_not_clickable(self, locator: Locator) -> bool:
+        try:
+            return self.wait.until(EC.none_of(EC.element_to_be_clickable(locator)))
+        except (TimeoutException, NoSuchElementException):
             return False
