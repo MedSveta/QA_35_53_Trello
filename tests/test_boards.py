@@ -1,6 +1,9 @@
 from models.board import Board
+import pytest
 
 class TestBoard:
+
+    @pytest.mark.smoke
     def test_create_new_board_positive(self, go_boards_page, new_board):
         my_board = go_boards_page.create_new_board(new_board).submit_board()
         assert my_board.is_url_contains(new_board.board_title)

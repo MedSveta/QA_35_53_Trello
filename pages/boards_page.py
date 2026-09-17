@@ -12,6 +12,7 @@ class BoardsPage(BasePage):
     INPUT_BOARD_TITLE = (By.XPATH, "//input[@data-testid='create-board-title-input']")
     CREATE_BTN = (By.XPATH, "//button[@data-testid='create-board-submit-button']")
 
+
     def create_new_board(self, board: Board) -> 'BoardsPage':
         self.click(self.CREATE_NEW_BOARD_BTN)
         self.click(self.CREATE_BOARD)
@@ -24,6 +25,7 @@ class BoardsPage(BasePage):
 
     def is_create_btn_clickable(self) -> bool:
         return self.is_not_clickable(self.CREATE_BTN)
+
 
 
 

@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 
 from models.board import Board
 from pages.home_page import HomePage
+from pages.boards_page import BoardsPage
 from faker import Faker
 import config as cfg
 
@@ -44,4 +45,3 @@ def new_board() -> Board:
 def board_created(go_boards_page, new_board):
     my_board = go_boards_page.create_new_board(new_board).submit_board()
     return my_board
-

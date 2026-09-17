@@ -44,3 +44,9 @@ class BasePage:
             return self.wait.until(EC.none_of(EC.element_to_be_clickable(locator)))
         except (TimeoutException, NoSuchElementException):
             return False
+
+    def is_text_present(self, locator: Locator, text: str) -> bool:
+        try:
+            return self.wait.until(EC.text_to_be_present_in_element(locator, text))
+        except (TimeoutException, NoSuchElementException):
+            return False

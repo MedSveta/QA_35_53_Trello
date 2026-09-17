@@ -1,7 +1,8 @@
-
+import  pytest
 from pages.home_page import HomePage
 
 class TestLogin:
+    @pytest.mark.smoke
     def test_login(self, driver, user):
         page = HomePage(driver).open().goto_login_page().login(user)
         assert page.is_url_contains("boards")

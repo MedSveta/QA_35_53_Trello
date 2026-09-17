@@ -11,3 +11,4 @@ pytest -s
 pytest -s -v
 
 
+pytest -m smoke

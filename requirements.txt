@@ -2,3 +2,4 @@ selenium
 pytest
 faker
 pytest-check
+pytest-html
