@@ -1,8 +1,6 @@
 import time
 
 from pages.base_page import BasePage
-
-
 from selenium.webdriver.common.by import By
 
 class MyBoardPage(BasePage):
@@ -13,18 +11,15 @@ class MyBoardPage(BasePage):
     DELETE_BOARD = (By.XPATH, "//button[@data-testid='close-board-delete-board-button']")
     DELETE_BTN = (By.XPATH, "//button[@data-testid='close-board-delete-board-confirm-button']")
 
-    DELETE_MESSAGE = (By.XPATH, "//h3[@class='Y92QKTolCOLuLZ']")
-
-    def is_board_deleted_message(self, text: str) -> bool:
-        return self.is_text_present(self.DELETE_MESSAGE, text)
 
     def delete_board(self):
+        from pages.boards_page import BoardsPage
         self.click(self.MENU_DOTS)
         self.click(self.CLOSE_BOARD)
         self.click(self.CLOSE_BTN)
         self.click(self.MENU_DOTS)
         self.click(self.DELETE_BOARD)
         self.click(self.DELETE_BTN)
-        time.sleep(2)
+        return BoardsPage(self.driver)
 
 
