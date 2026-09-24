@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 from pages.my_board_page import MyBoardPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from pages.atlassian_page import AtlassianPage
 
 
 class BoardsPage(BasePage):
@@ -13,7 +14,15 @@ class BoardsPage(BasePage):
     INPUT_BOARD_TITLE = (By.XPATH, "//input[@data-testid='create-board-title-input']")
     CREATE_BTN = (By.XPATH, "//button[@data-testid='create-board-submit-button']")
     DELETE_MESSAGE = (By.XPATH, "//*[text()='Board deleted.']")
+    ACCOUNT = (By.XPATH, "//button[@data-testid='header-member-menu-button']")
+    MANAGE_ACCOUNT = (By.XPATH, "//span[text()='Manage account']")
 
+    def open_my_account_atlassian_page(self):
+        self.click(self.ACCOUNT)
+        self.click(self.MANAGE_ACCOUNT)
+        self.wait.until(EC.number_of_windows_to_be(2))
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        return AtlassianPage(self.driver)
 
     def create_new_board(self, board: Board) -> 'BoardsPage':
         self.click(self.CREATE_NEW_BOARD_BTN)
